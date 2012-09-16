@@ -1,5 +1,5 @@
 <resources>
-
     <string name="app_name">Forget Me Knot</string>
-
+    <string name="reminder_title">Remember to…</string>
+    <string name="reminder_ticker">Forget Me Knot reminder added!</string>
 </resources>

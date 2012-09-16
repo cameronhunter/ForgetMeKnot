@@ -42,9 +42,9 @@ public class MainActivity extends SherlockListActivity {
         Builder builder = new NotificationCompat.Builder( this );
 
         builder.setSmallIcon( R.drawable.logo2 )
-               .setContentTitle( "Remember to…" )
                .setContentText( reminder.text )
-               .setTicker( "Forget Me Knot reminder added!" );
+               .setContentTitle( getResources().getText(  R.string.reminder_title ) )
+               .setTicker( getResources().getText( R.string.reminder_ticker ) );
 
         NotificationManager notificationManager = (NotificationManager) getSystemService( NOTIFICATION_SERVICE );
         notificationManager.notify( 1, builder.getNotification() );
