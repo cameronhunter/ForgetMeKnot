@@ -1,5 +1,6 @@
 package uk.co.cameronhunter.forgetmeknot.receivers;
 
+import uk.co.cameronhunter.forgetmeknot.R;
 import uk.co.cameronhunter.forgetmeknot.data.Reminder;
 import uk.co.cameronhunter.forgetmeknot.data.Reminders;
 import android.content.BroadcastReceiver;
@@ -14,8 +15,8 @@ public class BootReceiver extends BroadcastReceiver {
         
         for ( Reminder reminder : data.getAll() ) {
             Intent showNotification = new Intent( "uk.co.cameronhunter.forgetmeknot.showNotification" );
-            showNotification.putExtra( "reminder_id", reminder.id );
-            showNotification.putExtra( "reminder_text", reminder.text );
+            showNotification.putExtra( context.getString( R.string.reminder_id ), reminder.id );
+            showNotification.putExtra( context.getString( R.string.reminder_text ), reminder.text );
             
             context.sendBroadcast( showNotification );
         }
