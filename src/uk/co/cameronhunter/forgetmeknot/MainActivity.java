@@ -41,13 +41,13 @@ public class MainActivity extends SherlockListActivity {
     private void createNotificationFor( Reminder reminder ) {
         Builder builder = new NotificationCompat.Builder( this );
 
-        builder.setSmallIcon( R.drawable.logo )
+        builder.setSmallIcon( R.drawable.logo2 )
                .setContentTitle( "Remember to…" )
                .setContentText( reminder.text )
                .setTicker( "Forget Me Knot reminder added!" );
 
         NotificationManager notificationManager = (NotificationManager) getSystemService( NOTIFICATION_SERVICE );
-        notificationManager.notify( String.valueOf( reminder.id ), 0, builder.getNotification() );
+        notificationManager.notify( 1, builder.getNotification() );
     }
 
     @SuppressWarnings( "unchecked" )
