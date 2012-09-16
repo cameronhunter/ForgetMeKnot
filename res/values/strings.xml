@@ -1,5 +1,13 @@
 <resources>
+    
+    <!-- UI Text -->
     <string name="app_name">Forget Me Knot</string>
+    <string name="reminder_hint">Remind me to…</string>
     <string name="reminder_title">Remember to…</string>
     <string name="reminder_ticker">Forget Me Knot reminder added!</string>
+    
+    <!-- Keys -->
+    <string name="reminder_id">reminder_id</string>
+    <string name="reminder_text">reminder_text</string>
+    
 </resources>

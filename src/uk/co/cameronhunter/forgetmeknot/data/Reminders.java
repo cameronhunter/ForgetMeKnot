@@ -1,4 +1,4 @@
-package uk.co.cameronhunter.forgetmeknot;
+package uk.co.cameronhunter.forgetmeknot.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,25 +39,23 @@ public class Reminders extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues record = new ContentValues();
-        record.put( REMINDER_COLUMN_NAME, reminder.text );
+        record.put( REMINDER_COLUMN_NAME, reminder.text.toString() );
 
         long id = db.insert( TABLE_NAME, null, record );
         db.close();
 
         if ( id < 0 ) throw new RuntimeException( "Didn't save reminder" );
 
+        Log.i( "Database", "Inserted reminder with ID: " + id );
+        
         return new Reminder( id, reminder.text );
     }
 
-    public Reminder delete( Reminder reminder ) {
+    public void delete( long reminderId ) {
         SQLiteDatabase db = getWritableDatabase();
 
-        int affectedRows = db.delete( TABLE_NAME, PRIMARY_KEY + "= ?", new String[] { String.valueOf( reminder.id ) } );
+        db.delete( TABLE_NAME, PRIMARY_KEY + "= ?", new String[] { String.valueOf( reminderId ) } );
         db.close();
-
-        if ( affectedRows != 1 ) throw new RuntimeException( "Didn't delete reminder" );
-
-        return new Reminder( reminder.text );
     }
 
     public void deleteAll() {
