@@ -9,7 +9,7 @@
     
     <application android:icon="@drawable/logo2" android:label="@string/app_name" android:theme="@style/app_theme">
         
-        <activity android:name=".MainActivity" android:label="@string/reminder_hint" android:windowSoftInputMode="stateAlwaysVisible">
+        <activity android:name=".MainActivity" android:label="@string/app_name" android:windowSoftInputMode="stateAlwaysVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
+        
+        setTitle( getString( R.string.reminder_hint ) );
 
         final Random random = new Random();
         final String[] reminders = getResources().getStringArray( R.array.precanned_reminders );
