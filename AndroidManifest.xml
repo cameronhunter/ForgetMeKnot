@@ -1,15 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.cameronhunter.forgetmeknot"
-    android:versionCode="10000"
-    android:versionName="1.0" >
+    android:versionCode="10001"
+    android:versionName="1.1.0" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     
-    <application android:icon="@drawable/logo2" android:label="@string/app_name">
+    <application android:icon="@drawable/logo2" android:label="@string/app_name" android:theme="@style/app_theme">
         
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:label="@string/reminder_hint" android:windowSoftInputMode="stateAlwaysVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

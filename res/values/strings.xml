@@ -5,6 +5,16 @@
     <string name="reminder_hint">Remind me to…</string>
     <string name="reminder_title">Remember to…</string>
     <string name="reminder_ticker">Forget Me Knot reminder added!</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Reminder hints -->
+    <string-array name="precanned_reminders">
+        <item>Call Grandma</item>
+        <item>Pick up milk on the way home</item>
+        <item>Clean the apartment</item>
+        <item>Backup my photos</item>
+    </string-array>
     
     <!-- Keys -->
     <string name="reminder_id">reminder_id</string>
