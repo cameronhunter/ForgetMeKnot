@@ -30,6 +30,8 @@ public class Reminders extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion ) {
+        if ( oldVersion >= newVersion ) return;
+
         Log.w( getClass().getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data" );
         db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME );
         onCreate( db );
@@ -47,7 +49,7 @@ public class Reminders extends SQLiteOpenHelper {
         if ( id < 0 ) throw new RuntimeException( "Didn't save reminder" );
 
         Log.i( "Database", "Inserted reminder with ID: " + id );
-        
+
         return new Reminder( id, reminder.text );
     }
 
