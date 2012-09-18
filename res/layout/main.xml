@@ -12,9 +12,8 @@
         android:layout_gravity="bottom"
         android:layout_weight="1.0"
         android:focusable="true"
-        android:singleLine="true"
-        android:inputType="textAutoCorrect|textCapSentences|textShortMessage"
-        android:maxLength="140"
+        android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
+        android:maxLength="2000"
         android:maxLines="3" />
 
     <LinearLayout
