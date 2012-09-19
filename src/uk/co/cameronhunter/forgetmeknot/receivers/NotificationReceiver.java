@@ -52,12 +52,9 @@ public class NotificationReceiver extends BroadcastReceiver {
         
         BigTextStyle builder = new BigTextStyle( //
                 new Builder( context ).setSmallIcon( R.drawable.logo2 ) //
-                        .setOngoing( true ) //
                         .setContentText( reminder.text ) //
                         .setContentTitle( resources.getText( R.string.reminder_title ) ) //
                         .setTicker( resources.getText( R.string.reminder_added ) ) //
-                        .addAction( android.R.drawable.ic_menu_edit, resources.getString( R.string.edit ), pendingEditIntent ) //
-                        .addAction( android.R.drawable.ic_menu_delete, resources.getString( R.string.delete ), pendingDeleteIntent ) //
                         .setContentIntent( pendingEditIntent ) //
                         .setDeleteIntent( pendingDeleteIntent ) //
         ).bigText( reminder.text );
