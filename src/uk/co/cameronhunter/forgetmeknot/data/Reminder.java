@@ -18,6 +18,10 @@ public final class Reminder {
         this.text = text;
     }
     
+    public boolean isSaved() {
+        return id != null && id.longValue() > 0;
+    }
+    
     @Override
     public String toString() {
         return String.format( "Reminder[id:%s, text:%s]", id, text );

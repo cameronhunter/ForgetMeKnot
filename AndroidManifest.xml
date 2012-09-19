@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.cameronhunter.forgetmeknot"
-    android:versionCode="10006"
-    android:versionName="1.2.2" >
+    android:versionCode="10007"
+    android:versionName="1.3.0" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
 
@@ -24,7 +24,7 @@
         
         <receiver android:name=".receivers.InsertReceiver" android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.INSERT"/>
+                <action android:name="android.intent.action.INSERT_OR_EDIT"/>
             </intent-filter>
         </receiver>
         

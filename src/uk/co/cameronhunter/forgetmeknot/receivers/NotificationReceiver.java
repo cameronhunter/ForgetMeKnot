@@ -1,6 +1,7 @@
 package uk.co.cameronhunter.forgetmeknot.receivers;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import uk.co.cameronhunter.forgetmeknot.MainActivity;
 import uk.co.cameronhunter.forgetmeknot.R;
 import uk.co.cameronhunter.forgetmeknot.data.Reminder;
 import android.app.NotificationManager;
@@ -29,7 +30,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         Intent removeIntent = new Intent( Intent.ACTION_DELETE );
         removeIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
 
-        Intent editIntent = new Intent( Intent.ACTION_EDIT );
+        Intent editIntent = new Intent( context, MainActivity.class );
+        editIntent.setAction( Intent.ACTION_EDIT );
         editIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
         
         BigTextStyle builder = new BigTextStyle( //
