@@ -69,6 +69,8 @@ public class MainActivity extends Activity {
                     input.setText( EMPTY_STRING );
 
                     sendBroadcast( createOrUpdateReminder );
+                    
+                    finish();
                 }
             }
         } );
