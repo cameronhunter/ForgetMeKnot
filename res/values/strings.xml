@@ -4,9 +4,12 @@
     <string name="app_name">Forget Me Knot</string>
     <string name="reminder_hint">Remind me to…</string>
     <string name="reminder_title">Remember to…</string>
-    <string name="reminder_added">Forget Me Knot reminder added!</string>
-    <string name="reminder_deleted">Forget Me Knot reminder deleted!</string>
+    <string name="reminder_added">Reminder saved!</string>
+    <string name="reminder_deleted">Reminder deleted!</string>
+    
+    <!-- Actions -->
     <string name="save">Save</string>
+    <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
 

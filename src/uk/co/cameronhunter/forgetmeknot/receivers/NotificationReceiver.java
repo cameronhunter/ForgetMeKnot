@@ -47,15 +47,21 @@ public class NotificationReceiver extends BroadcastReceiver {
         editIntent.setAction( ACTION_EDIT );
         editIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
 
+        PendingIntent pendingEditIntent = PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 );
+        PendingIntent pendingDeleteIntent = PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 );
+        
         BigTextStyle builder = new BigTextStyle( //
                 new Builder( context ).setSmallIcon( R.drawable.logo2 ) //
                         .setContentText( reminder.text ) //
                         .setContentTitle( resources.getText( R.string.reminder_title ) ) //
                         .setTicker( resources.getText( R.string.reminder_added ) ) //
                         .setPriority( Notification.PRIORITY_HIGH ) //
-                        .setContentIntent( PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 ) ) //
-                        .setDeleteIntent( PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 ) ) //
+                        .addAction( android.R.drawable.ic_menu_edit, resources.getString( R.string.edit ), pendingEditIntent ) //
+                        .addAction( android.R.drawable.ic_menu_delete, resources.getString( R.string.delete ), pendingDeleteIntent ) //
+                        .setContentIntent( pendingEditIntent ) //
+                        .setDeleteIntent( pendingDeleteIntent ) //
         ).bigText( reminder.text );
+        
 
         return builder.build();
     }
