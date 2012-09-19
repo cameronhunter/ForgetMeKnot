@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
             Reminders data = new Reminders( this );
             Reminder reminder = data.find( reminderId.get() );
             if ( reminder != null ) {
+                save.setText( getString( R.string.update ) );
                 delete.setVisibility( Button.VISIBLE );
                 input.setText( reminder.text );
                 input.setSelectAllOnFocus( true );
