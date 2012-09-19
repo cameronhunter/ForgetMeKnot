@@ -12,8 +12,10 @@ public class RemoveReceiver extends BroadcastReceiver {
     public void onReceive( Context context, Intent intent ) {
         if ( intent == null || intent.getExtras() == null ) return;
 
+        long reminderId = intent.getLongExtra( context.getString( R.string.reminder_id ), -1 );
+
         Reminders data = new Reminders( context );
-        data.delete( intent.getLongExtra( context.getString( R.string.reminder_id ), -1 ) );
+        data.delete( reminderId );
     }
 
 }

@@ -1,5 +1,6 @@
 package uk.co.cameronhunter.forgetmeknot;
 
+import static android.content.Intent.ACTION_DELETE;
 import static android.content.Intent.ACTION_EDIT;
 import static android.content.Intent.ACTION_INSERT_OR_EDIT;
 
@@ -30,7 +31,9 @@ public class MainActivity extends Activity {
         setContentView( R.layout.main );
 
         final EditText input = (EditText) findViewById( R.id.input );
-        input.setHint( placeholders[random.nextInt( placeholders.length )] );
+        Button save = (Button) findViewById( R.id.save );
+        Button delete = (Button) findViewById( R.id.delete );
+        Button cancel = (Button) findViewById( R.id.cancel );
 
         Intent intent = getIntent();
         final AtomicLong reminderId = new AtomicLong( intent.getLongExtra( getString( R.string.reminder_id ), -1 ) );
@@ -39,13 +42,13 @@ public class MainActivity extends Activity {
             Reminders data = new Reminders( this );
             Reminder reminder = data.find( reminderId.get() );
             if ( reminder != null ) {
+                delete.setVisibility( Button.VISIBLE );
                 input.setText( reminder.text );
                 input.setSelectAllOnFocus( true );
             }
         }
 
-        Button save = (Button) findViewById( R.id.save );
-        Button cancel = (Button) findViewById( R.id.cancel );
+        input.setHint( placeholders[random.nextInt( placeholders.length )] );
 
         save.setOnClickListener( new OnClickListener() {
             @Override
@@ -64,6 +67,18 @@ public class MainActivity extends Activity {
             }
         } );
 
+        delete.setOnClickListener( new OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                Intent deleteIntent = new Intent( ACTION_DELETE );
+                deleteIntent.putExtra( getString( R.string.reminder_id ), reminderId.get() );
+                
+                sendBroadcast( deleteIntent );
+                
+                finish();
+            }
+        } );
+        
         cancel.setOnClickListener( new OnClickListener() {
             @Override
             public void onClick( View v ) {

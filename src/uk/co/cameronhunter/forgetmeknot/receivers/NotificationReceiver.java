@@ -1,9 +1,13 @@
 package uk.co.cameronhunter.forgetmeknot.receivers;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import static android.content.Intent.ACTION_DELETE;
+import static android.content.Intent.ACTION_EDIT;
+import static android.content.Intent.ACTION_VIEW;
 import uk.co.cameronhunter.forgetmeknot.MainActivity;
 import uk.co.cameronhunter.forgetmeknot.R;
 import uk.co.cameronhunter.forgetmeknot.data.Reminder;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -19,7 +23,6 @@ public class NotificationReceiver extends BroadcastReceiver {
     public void onReceive( Context context, Intent intent ) {
         if ( intent == null || intent.getExtras() == null ) return;
 
-        Resources resources = context.getResources();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService( NOTIFICATION_SERVICE );
 
         long reminderId = intent.getLongExtra( context.getString( R.string.reminder_id ), -1 );
@@ -27,23 +30,33 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         Reminder reminder = new Reminder( reminderId, reminderText );
 
-        Intent removeIntent = new Intent( Intent.ACTION_DELETE );
+        if ( ACTION_VIEW.equals( intent.getAction() ) ) {
+            notificationManager.notify( reminder.id.intValue(), createNotification( context, reminder ) );
+        } else if ( ACTION_DELETE.equals( intent.getAction() ) ) {
+            notificationManager.cancel( reminder.id.intValue() );
+        }
+    }
+
+    private Notification createNotification( Context context, Reminder reminder ) {
+        Resources resources = context.getResources();
+
+        Intent removeIntent = new Intent( ACTION_DELETE );
         removeIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
 
         Intent editIntent = new Intent( context, MainActivity.class );
-        editIntent.setAction( Intent.ACTION_EDIT );
+        editIntent.setAction( ACTION_EDIT );
         editIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
-        
+
         BigTextStyle builder = new BigTextStyle( //
                 new Builder( context ).setSmallIcon( R.drawable.logo2 ) //
                         .setContentText( reminder.text ) //
                         .setContentTitle( resources.getText( R.string.reminder_title ) ) //
-                        .setTicker( resources.getText( R.string.reminder_ticker ) ) //
+                        .setTicker( resources.getText( R.string.reminder_added ) ) //
                         .setContentIntent( PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 ) ) //
                         .setDeleteIntent( PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 ) ) //
         ).bigText( reminder.text );
 
-        notificationManager.notify( reminder.id.intValue(), builder.build() );
+        return builder.build();
     }
 
 }
