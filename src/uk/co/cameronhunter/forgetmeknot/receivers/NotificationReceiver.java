@@ -29,11 +29,15 @@ public class NotificationReceiver extends BroadcastReceiver {
         Intent removeIntent = new Intent( Intent.ACTION_DELETE );
         removeIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
 
+        Intent editIntent = new Intent( Intent.ACTION_EDIT );
+        editIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
+        
         BigTextStyle builder = new BigTextStyle( //
                 new Builder( context ).setSmallIcon( R.drawable.logo2 ) //
                         .setContentText( reminder.text ) //
                         .setContentTitle( resources.getText( R.string.reminder_title ) ) //
                         .setTicker( resources.getText( R.string.reminder_ticker ) ) //
+                        .setContentIntent( PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 ) ) //
                         .setDeleteIntent( PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 ) ) //
         ).bigText( reminder.text );
 

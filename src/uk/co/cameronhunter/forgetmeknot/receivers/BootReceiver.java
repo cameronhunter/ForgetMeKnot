@@ -14,7 +14,7 @@ public class BootReceiver extends BroadcastReceiver {
         Reminders data = new Reminders( context );
         
         for ( Reminder reminder : data.getAll() ) {
-            Intent showNotification = new Intent( "uk.co.cameronhunter.forgetmeknot.showNotification" );
+            Intent showNotification = new Intent( Intent.ACTION_VIEW );
             showNotification.putExtra( context.getString( R.string.reminder_id ), reminder.id );
             showNotification.putExtra( context.getString( R.string.reminder_text ), reminder.text );
             

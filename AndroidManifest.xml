@@ -36,7 +36,7 @@
         
         <receiver android:name=".receivers.NotificationReceiver" android:exported="false">
             <intent-filter>
-                <action android:name="uk.co.cameronhunter.forgetmeknot.showNotification"/>
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </receiver>
         

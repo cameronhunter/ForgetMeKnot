@@ -18,7 +18,7 @@ public class InsertReceiver extends BroadcastReceiver {
         String reminderText = intent.getStringExtra( context.getString( R.string.reminder_text ) );
         Reminder reminder = data.add( new Reminder( reminderText ) );
 
-        Intent showNotification = new Intent( "uk.co.cameronhunter.forgetmeknot.showNotification" );
+        Intent showNotification = new Intent( Intent.ACTION_VIEW );
         showNotification.putExtra( context.getString( R.string.reminder_id ), reminder.id );
         showNotification.putExtra( context.getString( R.string.reminder_text ), reminder.text );
         
