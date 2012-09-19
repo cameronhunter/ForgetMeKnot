@@ -25,16 +25,15 @@ public class Reminders extends SQLiteOpenHelper {
 
     @Override
     public void onCreate( SQLiteDatabase db ) {
-        db.execSQL( "create table " + TABLE_NAME + " (" + PRIMARY_KEY + " integer primary key autoincrement, " + REMINDER_COLUMN_NAME + " text not null)" );
+        db.execSQL( "create table if not exists " + TABLE_NAME + " (" + PRIMARY_KEY + " integer primary key autoincrement, " + REMINDER_COLUMN_NAME + " text not null)" );
     }
 
     @Override
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion ) {
-        if ( oldVersion >= newVersion ) return;
-
-        Log.w( getClass().getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data" );
-        db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME );
-        onCreate( db );
+        if ( newVersion >= oldVersion ) {
+            db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME );
+            onCreate( db );
+        }
     }
 
     public Reminder add( Reminder reminder ) {
