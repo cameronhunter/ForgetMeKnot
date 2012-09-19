@@ -52,6 +52,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                         .setContentText( reminder.text ) //
                         .setContentTitle( resources.getText( R.string.reminder_title ) ) //
                         .setTicker( resources.getText( R.string.reminder_added ) ) //
+                        .setPriority( Notification.PRIORITY_HIGH ) //
                         .setContentIntent( PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 ) ) //
                         .setDeleteIntent( PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 ) ) //
         ).bigText( reminder.text );
