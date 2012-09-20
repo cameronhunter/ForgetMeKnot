@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import uk.co.cameronhunter.forgetmeknot.data.Reminder;
 import uk.co.cameronhunter.forgetmeknot.data.Reminders;
+import uk.co.cameronhunter.forgetmeknot.receivers.BootReceiver;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +23,8 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
-
+        sendBroadcast( new Intent( this, BootReceiver.class ) );
+        
         setTitle( getString( R.string.reminder_hint ) );
 
         final Random random = new Random();

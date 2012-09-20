@@ -25,5 +25,6 @@
     <!-- Keys -->
     <string name="reminder_id">reminder_id</string>
     <string name="reminder_text">reminder_text</string>
+    <string name="respawn">respawn</string>
     
 </resources>
