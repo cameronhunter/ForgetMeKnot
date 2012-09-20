@@ -59,7 +59,6 @@ public class NotificationReceiver extends BroadcastReceiver {
                         .setDeleteIntent( pendingDeleteIntent ) //
         ).bigText( reminder.text );
         
-
         return builder.build();
     }
 
