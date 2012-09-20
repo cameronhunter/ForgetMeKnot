@@ -13,7 +13,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.Builder;
 
@@ -38,8 +37,6 @@ public class NotificationReceiver extends BroadcastReceiver {
     }
 
     private Notification createNotification( Context context, Reminder reminder ) {
-        Resources resources = context.getResources();
-
         Intent removeIntent = new Intent( ACTION_DELETE );
         removeIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
 
@@ -53,8 +50,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         BigTextStyle builder = new BigTextStyle( //
                 new Builder( context ).setSmallIcon( R.drawable.logo2 ) //
                         .setContentText( reminder.text ) //
-                        .setContentTitle( resources.getText( R.string.reminder_title ) ) //
-                        .setTicker( resources.getText( R.string.reminder_added ) ) //
+                        .setContentTitle( context.getString( R.string.reminder_title ) ) //
+                        .setTicker( context.getString( R.string.reminder_added ) ) //
                         .setContentIntent( pendingEditIntent ) //
                         .setDeleteIntent( pendingDeleteIntent ) //
         ).bigText( reminder.text );
