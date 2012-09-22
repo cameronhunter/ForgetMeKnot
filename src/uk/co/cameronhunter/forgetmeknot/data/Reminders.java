@@ -1,7 +1,5 @@
 package uk.co.cameronhunter.forgetmeknot.data;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,21 +83,29 @@ public class Reminders extends SQLiteOpenHelper {
             cursor = db.rawQuery( "select " + PRIMARY_KEY + "," + REMINDER_COLUMN_NAME + " from " + TABLE_NAME + " where " + PRIMARY_KEY + "= ?", new String[] { String.valueOf( reminderId ) } );
             return cursor.moveToFirst() ? new Reminder( cursor.getLong( 0 ), cursor.getString( 1 ) ) : null;
         } finally {
-            closeQuietly( cursor, db );
+            closeQuietly( cursor );
+            closeQuietly( db );
         }
     }
 
     public void delete( long reminderId ) {
-        SQLiteDatabase db = getWritableDatabase();
-
-        db.delete( TABLE_NAME, PRIMARY_KEY + "= ?", new String[] { String.valueOf( reminderId ) } );
-        db.close();
+        SQLiteDatabase db = null;
+        try {
+            db = getWritableDatabase();
+            db.delete( TABLE_NAME, PRIMARY_KEY + "= ?", new String[] { String.valueOf( reminderId ) } );
+        } finally {
+            closeQuietly( db );
+        }
     }
 
     public void deleteAll() {
-        SQLiteDatabase db = getWritableDatabase();
-        db.delete( TABLE_NAME, null, null );
-        db.close();
+        SQLiteDatabase db = null;
+        try {
+            db = getWritableDatabase();
+            db.delete( TABLE_NAME, null, null );
+        } finally {
+            closeQuietly( db );
+        }
     }
 
     public List<Reminder> getAll() {
@@ -119,18 +125,16 @@ public class Reminders extends SQLiteOpenHelper {
 
             return reminders;
         } finally {
-            closeQuietly( cursor, db );
+            closeQuietly( cursor );
+            closeQuietly( db );
         }
     }
 
-    private static void closeQuietly( Closeable... closeables ) {
-        for ( Closeable closeable : closeables ) {
-            if ( closeable != null ) try {
-                closeable.close();
-            } catch ( IOException e ) {
-                // Do nothing
-            }
-        }
+    private static void closeQuietly( SQLiteDatabase db ) {
+        if ( db != null ) db.close();
     }
 
+    private static void closeQuietly( Cursor cursor ) {
+        if ( cursor != null ) cursor.close();
+    }
 }
