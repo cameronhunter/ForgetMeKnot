@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.cameronhunter.forgetmeknot"
-    android:versionCode="10010"
-    android:versionName="1.3.2" >
+    android:versionCode="10011"
+    android:versionName="1.3.3" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
 
@@ -22,6 +22,7 @@
         <receiver android:name=".receivers.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
         
