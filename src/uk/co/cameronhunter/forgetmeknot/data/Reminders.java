@@ -29,7 +29,7 @@ public class Reminders extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion ) {
-        if ( newVersion >= oldVersion ) {
+        if ( newVersion > oldVersion ) {
             db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME );
             onCreate( db );
         }
