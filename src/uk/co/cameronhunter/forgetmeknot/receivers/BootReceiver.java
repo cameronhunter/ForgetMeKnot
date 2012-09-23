@@ -16,9 +16,9 @@ public class BootReceiver extends BroadcastReceiver {
         
         for ( Reminder reminder : data.getAll() ) {
             Intent showNotification = new Intent( ACTION_VIEW );
-            showNotification.putExtra( context.getString( R.string.reminder_id ), reminder.id );
-            showNotification.putExtra( context.getString( R.string.reminder_text ), reminder.text );
-            showNotification.putExtra( context.getString( R.string.respawn ), true );
+            showNotification.putExtra( context.getString( R.id.reminder_id ), reminder.id );
+            showNotification.putExtra( context.getString( R.id.reminder_text ), reminder.text );
+            showNotification.putExtra( context.getString( R.id.respawn ), true );
             
             context.sendBroadcast( showNotification );
         }

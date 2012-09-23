@@ -1,5 +1,4 @@
 <resources>
-    
     <!-- UI Text -->
     <string name="app_name">Forget Me Knot</string>
     <string name="reminder_hint">Remind me to…</string>
@@ -21,10 +20,4 @@
         <item>Clean the apartment</item>
         <item>Backup my photos</item>
     </string-array>
-    
-    <!-- Keys -->
-    <string name="reminder_id">reminder_id</string>
-    <string name="reminder_text">reminder_text</string>
-    <string name="respawn">respawn</string>
-    
 </resources>

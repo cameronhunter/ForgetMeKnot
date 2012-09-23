@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         Button cancel = (Button) findViewById( R.id.cancel );
 
         Intent intent = getIntent();
-        final AtomicLong reminderId = new AtomicLong( intent.getLongExtra( getString( R.string.reminder_id ), -1 ) );
+        final AtomicLong reminderId = new AtomicLong( intent.getLongExtra( getString( R.id.reminder_id ), -1 ) );
 
         if ( ACTION_EDIT.equals( intent.getAction() ) ) {
             Reminders data = new Reminders( this );
@@ -58,8 +58,8 @@ public class MainActivity extends Activity {
                 if ( reminderText.length() > 0 ) {
                     Intent createOrUpdateReminder = new Intent( ACTION_INSERT_OR_EDIT );
 
-                    createOrUpdateReminder.putExtra( getString( R.string.reminder_id ), reminderId.get() );
-                    createOrUpdateReminder.putExtra( getString( R.string.reminder_text ), reminderText );
+                    createOrUpdateReminder.putExtra( getString( R.id.reminder_id ), reminderId.get() );
+                    createOrUpdateReminder.putExtra( getString( R.id.reminder_text ), reminderText );
 
                     sendBroadcast( createOrUpdateReminder );
 
@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick( View v ) {
                 Intent deleteIntent = new Intent( ACTION_DELETE );
-                deleteIntent.putExtra( getString( R.string.reminder_id ), reminderId.get() );
+                deleteIntent.putExtra( getString( R.id.reminder_id ), reminderId.get() );
                 
                 sendBroadcast( deleteIntent );
                 

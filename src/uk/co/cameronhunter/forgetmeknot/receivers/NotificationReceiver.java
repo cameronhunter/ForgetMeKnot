@@ -24,8 +24,8 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService( NOTIFICATION_SERVICE );
 
-        long reminderId = intent.getLongExtra( context.getString( R.string.reminder_id ), -1 );
-        String reminderText = intent.getStringExtra( context.getString( R.string.reminder_text ) );
+        long reminderId = intent.getLongExtra( context.getString( R.id.reminder_id ), -1 );
+        String reminderText = intent.getStringExtra( context.getString( R.id.reminder_text ) );
 
         Reminder reminder = new Reminder( reminderId, reminderText );
 
@@ -38,11 +38,11 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     private Notification createNotification( Context context, Reminder reminder ) {
         Intent removeIntent = new Intent( ACTION_DELETE );
-        removeIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
+        removeIntent.putExtra( context.getString( R.id.reminder_id ), reminder.id );
 
         Intent editIntent = new Intent( context, MainActivity.class );
         editIntent.setAction( ACTION_EDIT );
-        editIntent.putExtra( context.getString( R.string.reminder_id ), reminder.id );
+        editIntent.putExtra( context.getString( R.id.reminder_id ), reminder.id );
 
         PendingIntent pendingEditIntent = PendingIntent.getActivity( context, reminder.id.intValue(), editIntent, 0 );
         PendingIntent pendingDeleteIntent = PendingIntent.getBroadcast( context, reminder.id.intValue(), removeIntent, 0 );

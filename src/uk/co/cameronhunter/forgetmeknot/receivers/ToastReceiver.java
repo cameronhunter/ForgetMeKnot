@@ -12,7 +12,7 @@ public class ToastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive( Context context, Intent intent ) {
         if ( intent == null || intent.getExtras() == null ) return;
-        if ( intent.getBooleanExtra( context.getString( R.string.respawn ), false ) ) return;
+        if ( intent.getBooleanExtra( context.getString( R.id.respawn ), false ) ) return;
         
         int message =  ACTION_VIEW.equals( intent.getAction() ) ? R.string.reminder_added : R.string.reminder_deleted;
         

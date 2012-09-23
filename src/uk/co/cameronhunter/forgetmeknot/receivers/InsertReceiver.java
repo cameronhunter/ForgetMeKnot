@@ -15,14 +15,14 @@ public class InsertReceiver extends BroadcastReceiver {
 
         Reminders data = new Reminders( context );
 
-        long reminderId = intent.getLongExtra( context.getString( R.string.reminder_id ), -1 );
-        String reminderText = intent.getStringExtra( context.getString( R.string.reminder_text ) );
+        long reminderId = intent.getLongExtra( context.getString( R.id.reminder_id ), -1 );
+        String reminderText = intent.getStringExtra( context.getString( R.id.reminder_text ) );
         
         Reminder reminder = data.save( new Reminder( reminderId, reminderText ) );
 
         Intent showNotification = new Intent( Intent.ACTION_VIEW );
-        showNotification.putExtra( context.getString( R.string.reminder_id ), reminder.id );
-        showNotification.putExtra( context.getString( R.string.reminder_text ), reminder.text );
+        showNotification.putExtra( context.getString( R.id.reminder_id ), reminder.id );
+        showNotification.putExtra( context.getString( R.id.reminder_text ), reminder.text );
         
         context.sendBroadcast( showNotification );
     }
