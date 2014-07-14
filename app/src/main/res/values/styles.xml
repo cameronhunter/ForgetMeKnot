@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="app_theme" parent="@android:Theme.DeviceDefault.Light.Dialog"></style>
+    <style name="button_style" parent="@android:style/DeviceDefault.Light.ButtonBar"></style>
+</resources>
