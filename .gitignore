@@ -1,45 +1,32 @@
-# built application files
+# Built application files
 *.apk
 *.ap_
-*.jar
 
-# keystore
-*.keystore
-
-# files for the dex VM
+# Files for the dex VM
 *.dex
 
 # Java class files
 *.class
 
-# generated files
+# Generated files
 bin/
 gen/
-
-# maven output folder
-target
 
 # Local configuration file (sdk path, etc)
 local.properties
 
-# Eclipse project files
-.classpath
-.project
-.metadata
-.settings
-
-# IntelliJ files
-.idea
-*.iml
+# Windows thumbnail db
+Thumbs.db
 
 # OSX files
 .DS_Store
 
-# Windows files
-Thumbs.db
+# Eclipse project files
+.classpath
+.project
 
-# vi swap files
-*.swp
+# Android Studio
+.idea
+.gradle
+build/
 
-# backup files
-*.bak
